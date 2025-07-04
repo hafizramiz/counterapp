@@ -150,12 +150,7 @@ class _CounterWidgetState extends State<CounterWidget> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              FloatingActionButton(
-                heroTag: 'decrement',
-                onPressed: _controller.decrement,
-                backgroundColor: primaryColor,
-                child: const Icon(Icons.remove),
-              ),
+
               FloatingActionButton(
                 heroTag: 'reset',
                 onPressed: _controller.reset,
@@ -177,7 +172,7 @@ class _CounterWidgetState extends State<CounterWidget> {
             ElevatedButton.icon(
               onPressed: _controller.incrementAsync,
               icon: const Icon(Icons.sync),
-              label: const Text('Async +1'),
+              label: const Text('Asyd sam sak cnc +1'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: primaryColor,
                 foregroundColor: Colors.white,
