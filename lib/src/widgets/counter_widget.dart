@@ -6,7 +6,7 @@ class CounterWidget extends StatefulWidget {
   final String? title;
   final int initialValue;
   final void Function(int value)? onValueChanged;
-  final void Function()? onCounterTen; // New callback for when counter reaches 10
+  final void Function() onCounterTen; // Made required by removing ?
   final bool showAsyncButton;
   final Color? primaryColor;
   final Color? backgroundColor;
@@ -16,7 +16,7 @@ class CounterWidget extends StatefulWidget {
     this.title,
     this.initialValue = 0,
     this.onValueChanged,
-    this.onCounterTen, // Added to constructor
+    required this.onCounterTen, // Made required
     this.showAsyncButton = false,
     this.primaryColor,
     this.backgroundColor,
@@ -52,8 +52,8 @@ class _CounterWidgetState extends State<CounterWidget> {
       widget.onValueChanged!(_controller.value);
     }
     // Trigger callback when counter reaches 10
-    if (_controller.value == 10 && widget.onCounterTen != null) {
-      widget.onCounterTen!();
+    if (_controller.value == 10) {
+      widget.onCounterTen(); // No null check needed as it's required
     }
   }
 

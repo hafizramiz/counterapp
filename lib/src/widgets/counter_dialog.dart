@@ -79,6 +79,7 @@ class CounterDialog extends StatelessWidget {
               showAsyncButton: showAsyncButton,
               primaryColor: primaryColor,
               backgroundColor: Colors.transparent,
+              onCounterTen: (){},
             ),
             
             const SizedBox(height: 24),
