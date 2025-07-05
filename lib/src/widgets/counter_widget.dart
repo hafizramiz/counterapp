@@ -6,6 +6,7 @@ class CounterWidget extends StatefulWidget {
   final String? title;
   final int initialValue;
   final void Function(int value)? onValueChanged;
+  final void Function()? onCounterTen; // New callback for when counter reaches 10
   final bool showAsyncButton;
   final Color? primaryColor;
   final Color? backgroundColor;
@@ -15,6 +16,7 @@ class CounterWidget extends StatefulWidget {
     this.title,
     this.initialValue = 0,
     this.onValueChanged,
+    this.onCounterTen, // Added to constructor
     this.showAsyncButton = false,
     this.primaryColor,
     this.backgroundColor,
@@ -48,6 +50,10 @@ class _CounterWidgetState extends State<CounterWidget> {
   void _onCounterChanged() {
     if (widget.onValueChanged != null) {
       widget.onValueChanged!(_controller.value);
+    }
+    // Trigger callback when counter reaches 10
+    if (_controller.value == 10 && widget.onCounterTen != null) {
+      widget.onCounterTen!();
     }
   }
 
@@ -83,7 +89,7 @@ class _CounterWidgetState extends State<CounterWidget> {
             ),
           ),
           const SizedBox(height: 16),
-          
+
           // Counter display
           AnimatedBuilder(
             animation: _controller,
@@ -91,7 +97,7 @@ class _CounterWidgetState extends State<CounterWidget> {
               if (_controller.isLoading) {
                 return const CircularProgressIndicator();
               }
-              
+
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 decoration: BoxDecoration(
@@ -108,9 +114,9 @@ class _CounterWidgetState extends State<CounterWidget> {
               );
             },
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Error message
           AnimatedBuilder(
             animation: _controller,
@@ -145,12 +151,11 @@ class _CounterWidgetState extends State<CounterWidget> {
               return const SizedBox.shrink();
             },
           ),
-          
+
           // Control buttons
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-
               FloatingActionButton(
                 heroTag: 'reset',
                 onPressed: _controller.reset,
@@ -165,9 +170,6 @@ class _CounterWidgetState extends State<CounterWidget> {
               ),
             ],
           ),
-
-
-
 
           // Async button
           if (widget.showAsyncButton) ...[
