@@ -175,7 +175,7 @@ class _CounterWidgetState extends State<CounterWidget> {
             ElevatedButton.icon(
               onPressed: _controller.incrementAsync,
               icon: const Icon(Icons.sync),
-              label: const Text('ksnfkdsnfksdmkfmd'),
+              label: const Text('Cok yeni bir commit attim'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: primaryColor,
                 foregroundColor: Colors.white,
